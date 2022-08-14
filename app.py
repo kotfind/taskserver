@@ -27,7 +27,7 @@ cfg.read(os.path.expanduser('~/.taskserverrc'))
 logics.init(cfg)
 
 app = flask.Flask(__name__,
-    template_folder = os.path.join(os.path.dirname(os.path.relpath(__file__)), 'templates'))
+    template_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates'))
 
 @app.route('/')
 def index():
