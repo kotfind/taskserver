@@ -73,3 +73,11 @@ def getTasks():
         ''')
 
         return list(map(lambda t: Task(*t), cur.fetchall()))
+
+def deleteTask(idx):
+    with sqlite3.connect(dbFile) as con:
+        con.execute('''
+            DELETE
+            FROM tasks
+            WHERE id = ?
+        ''', (idx,))

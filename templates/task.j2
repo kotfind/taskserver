@@ -15,6 +15,10 @@
     margin: 5px 0;
 }
 
+#deleteForm > button {
+    margin-top: 5px;
+}
+
 </style>
 {% endblock %}
 
@@ -49,5 +53,15 @@
 
         <button type="submit" name="save">Save</button>
         <button type="submit">Cancel</button>
+    </form>
+
+    <hr>
+
+    <form action="/deleteTask/{{ task.idx }}" method="post" id="deleteForm">
+        <input id="deleteCheckbox" type="checkbox" required>
+        <label for="deleteCheckbox">I do want to delete this task.</label>
+        <br>
+
+        <button type="submit">Delete</button>
     </form>
 {% endblock %}

@@ -76,6 +76,12 @@ def editTask(idx):
 
     return flask.redirect('/tasklist')
 
+@app.route('/deleteTask/<int:idx>', methods=['POST'])
+def deleteTask(idx):
+    logics.deleteTask(idx)
+
+    return flask.redirect('/tasklist')
+
 if __name__ == '__main__':
     serve(
         app,
