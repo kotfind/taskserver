@@ -1,0 +1,53 @@
+{% extends 'base.j2' %}
+
+{% block title %}Note{% endblock %} {# TODO #}
+
+{% block head %}
+<style>
+
+#descriptionField {
+    width: 300px;
+    height: 300px;
+}
+
+#noteForm > label, #noteForm > button {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+</style>
+{% endblock %}
+
+{% block contents %}
+    <form method="post" id="noteForm">
+        <h1>Task</h1>
+
+        <label for="deadlineField">Deadline</label>
+        <br>
+        <input type="date" name="deadline" id="deadlineField"
+            {%- if task.deadline -%}
+               value="{{ task.deadline }}"
+            {%- endif -%} >
+        <br>
+
+        <label for="nameField">Name</label>
+        <br>
+        <input type="text" name="name" id="nameField"
+            {%- if task.name -%}
+               value="{{ task.name }}"
+            {%- endif -%} >
+        <br>
+
+        <label for="descriptionField">Description</label>
+        <br>
+        <textarea name="description" id="descriptionField">
+            {%- if task.description -%}
+               {{- task.description -}}
+            {%- endif -%}
+        </textarea>
+        <br>
+
+        <button type="submit" name="save">Save</button>
+        <button type="submit">Cancel</button>
+    </form>
+{% endblock %}

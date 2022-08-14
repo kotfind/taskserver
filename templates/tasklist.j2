@@ -1,0 +1,82 @@
+{% extends 'base.j2' %}
+
+{%- block title %}Task List{% endblock -%}
+
+{% block head %}
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+#tasksDiv {
+    margin-top: 5px;
+    padding: 1px;
+}
+
+.task {
+    text-decoration: none;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+
+    margin-top: 5px;
+
+    display: flex;
+    gap: 5px;
+}
+
+.deadline {
+    color: black;
+
+    flex: 0 0 100px;
+}
+
+.name {
+    color: black;
+
+    display: inline-block;
+    overflow: hidden;
+
+    flex: 0 0 100px;
+}
+
+.description {
+    color: gray;
+
+    display: inline-block;
+    overflow: hidden;
+    height: 1em;
+
+    flex: 1 1 auto;
+}
+
+</style>
+{% endblock %}
+
+{% block contents %}
+    <form action="/task">
+        <button type="submit">
+            New Note
+        </button>
+    </form>
+
+    <div id="tasksDiv">
+        {% for task in tasks %}
+            <a class="task" href="/task/{{ task.idx }}">
+                <span class="deadline">
+                {%- if task.deadline -%}
+                    {{- task.deadline -}}
+                {%- endif -%}
+                </span>
+                <span class="name">
+                    {{- task.name -}}
+                </span>
+                <span class="description">
+                    {{- task.description -}}
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
