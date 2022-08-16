@@ -50,7 +50,6 @@ def createTask():
     if 'save' in flask.request.form:
         task = Task(-1,
             flask.request.form['deadline'],
-            flask.request.form['name'],
             flask.request.form['description']
             )
 
@@ -68,7 +67,6 @@ def editTask(idx):
     if 'save' in flask.request.form:
         task = Task(idx,
             flask.request.form['deadline'],
-            flask.request.form['name'],
             flask.request.form['description']
             )
 

@@ -33,16 +33,6 @@
     flex: 0 0 100px;
 }
 
-.name {
-    color: black;
-
-    display: inline-block;
-    overflow: hidden;
-    height: 1em;
-
-    flex: 0 0 100px;
-}
-
 .description {
     color: gray;
 
@@ -70,9 +60,6 @@
                 {%- if task.deadline -%}
                     {{- task.deadline -}}
                 {%- endif -%}
-                </span>
-                <span class="name">
-                    {{- task.name -}}
                 </span>
                 <span class="description">
                     {{- task.description -}}

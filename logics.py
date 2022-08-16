@@ -19,8 +19,7 @@ def init(cfg):
                 CREATE TABLE tasks(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     deadline CHAR(10),
-                    name VARCHAR(255),
-                    description TEXT
+                    description TEXT NOT NULL
                 )
             ''')
 
@@ -28,13 +27,11 @@ def updateTask(task):
     with sqlite3.connect(dbFile) as con:
         con.execute('''
             UPDATE tasks
-            SET deadline = ?,
-                name = ?,
-                description = ?
+            SET deadline = NULLIF(?, ''),
+                description = NULLIF(?, '')
             WHERE id = ?
         ''', (
-            task.deadline if task.deadline else None,
-            task.name,
+            task.deadline,
             task.description,
             task.idx
             ))
@@ -43,11 +40,10 @@ def createTask(task):
     with sqlite3.connect(dbFile) as con:
         con.execute('''
             INSERT
-            INTO tasks (deadline, name, description)
-            VALUES (?, ?, ?)
+            INTO tasks (deadline, description)
+            VALUES (NULLIF(?, ''), NULLIF(?, ''))
         ''', (
-            task.deadline if task.deadline else None,
-            task.name,
+            task.deadline,
             task.description
             ))
 
