@@ -66,6 +66,7 @@ def getTasks():
         cur.execute('''
             SELECT *
             FROM tasks
+            ORDER BY id DESC
         ''')
 
         return list(map(lambda t: Task(*t), cur.fetchall()))
